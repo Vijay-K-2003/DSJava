@@ -1,30 +1,30 @@
 import java.util.Arrays;
-// non Generic Stack with Limit
-class NewStack
+
+class NewGenStack<T>
 {
-    private int[] arr;
+    private T[] arr;
     private int next;
     private int top;
     private final int limit;
-    public NewStack(int l)
+
+    @SuppressWarnings("unchecked")
+    public NewGenStack(int l)
     {
-        arr = new int[l];
-        next = 0;
+        arr = (T[]) new Object[l];
         limit = l;
     }
-
     // push method
-    public void push(int i)
+    public void push(T i)
     {
         arr[next] = i;
         top = next;
         next++;
     }
     // pop method
-    public int pop()
+    public T pop()
     {
-        int ret = arr[top];
-        arr[top] = 0;
+        T ret = arr[top];
+        arr[top] = null;
         top--;
         next--;
         return ret;
@@ -37,7 +37,7 @@ class NewStack
             this.pop();
     }
     // peek
-    public int peek()
+    public T peek()
     {
         return arr[top];
     }
@@ -52,28 +52,26 @@ class NewStack
         return limit;
     }
 }
-
-
-public class MyStack
+public class MyGenStack
 {
     public static void main(String[] args)
     {
-        NewStack stk = new NewStack(10);
-        stk.push(0);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-        stk.push(1);
-
-        stk.printStack();
-        stk.pop();
-        stk.printStack();
-        stk.clearAll();
-        stk.printStack();
+        // Integer Double Character String
+        NewGenStack<Integer> ngs = new NewGenStack<>(10);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.push(1);
+        ngs.printStack();
+        ngs.pop();
+        ngs.printStack();
+        ngs.clearAll();
+        ngs.printStack();
     }
 }
